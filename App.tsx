@@ -3,6 +3,8 @@ import React, { Suspense, lazy } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppRedirect from './components/WhatsAppRedirect';
+import WhatsAppChatbot from './components/WhatsAppChatbot';
 
 // Lazy load pages for performance
 const Home = lazy(() => import('./pages/Home'));
@@ -65,6 +67,8 @@ const App: React.FC = () => {
           </Suspense>
         </main>
         <Footer />
+        <WhatsAppRedirect />
+        <WhatsAppChatbot />
       </div>
     </Router>
   );
