@@ -19,11 +19,14 @@ export async function getLegalAssistantResponse(prompt: string) {
   }
 }
 
-export async function getChatbotResponse(prompt: string, history: { role: 'user' | 'model', parts: [{ text: string }] }[]) {
+export async function getChatbotResponse(
+  prompt: string, 
+  history: { role: 'user' | 'model', parts: [{ text: string }] }[],
+  userContext: { name: string, tier: string } = { name: 'Guest', tier: 'Guest' }
+) {
   try {
     const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
-    // Convert history to compatible format for generateContent
     const contents = history.map(h => ({
       role: h.role,
       parts: h.parts
@@ -34,17 +37,33 @@ export async function getChatbotResponse(prompt: string, history: { role: 'user'
       model: 'gemini-3-pro-preview',
       contents: contents,
       config: {
-        systemInstruction: `You are the UCLF WhatsApp Assistant, a friendly and professional concierge for the Uganda Christian Lawyers Fraternity.
-        Context:
-        - Membership: Student (50k), Associate (150k), Full (200k).
-        - Legal Aid: For indigent persons (widows, orphans, refugees). Must verify lack of means.
-        - Regions: Kampala (HQ), Gulu (North), Kasese (SW), Arua (West Nile).
+        systemInstruction: `STRICT PROTOCOL: You are the UCLF AI legal assistant. 
+        Current User: ${userContext.name} (Tier: ${userContext.tier}).
+        
+        KNOWLEDGE BASE LIMITS:
+        - Membership tiers: Student (50k), Associate (150k), Full Member/Advocate (200k).
+        - Legal Aid: Exclusively for indigent (widows, orphans, refugees). Requires regional verification.
+        - Regions: Kampala, Gulu, Kasese, Arua.
         - Mission: Proverbs 31:9 - "Speak up and judge fairly."
-        Style: Brief, WhatsApp-style responses. Use emojis occasionally. 
-        Note: You provide info, not legal advice. For urgent legal help, tell them to visit the 'Legal Aid' page.`,
+        
+        FORMATTING RULES (CRITICAL):
+        1. NEVER use asterisks (*) or underscores (_) in your response. 
+        2. To BOLDEN text, you MUST wrap the words in <b> and </b> tags.
+        3. Use simple, clear, and polite English.
+        4. Be ELABORATE and detailed in your explanations.
+        5. ADAPT your tone: 
+           - For Students: Be encouraging and educational.
+           - For Advocates: Be professional and precise.
+           - For Guests: Be welcoming and explanatory.
+
+        STRICT LOGIC: Only answer questions found in this knowledge base. 
+        If a question is out-of-scope, respond exactly like this: "I apologize, but I don't have that specific information in my current records. I'm here to assist with UCLF membership and legal aid inquiries! How can I help you with those today?"`,
       }
     });
-    return response.text || "I'm here to help! Could you rephrase that?";
+
+    let text = response.text || "I apologize, I don't have that information.";
+    // Backup safety: Remove any stray markdown symbols the model might generate despite instructions
+    return text.replace(/[\*_]/g, '');
   } catch (error) {
     console.error("Chatbot Error:", error);
     return "I'm having a bit of trouble connecting. Please try again in a moment! 🙏";
