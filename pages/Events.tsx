@@ -62,6 +62,7 @@ const Events: React.FC = () => {
   const [events, setEvents] = useState<Event[]>(INITIAL_EVENTS);
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [rsvpLoading, setRsvpLoading] = useState<string | null>(null);
+  const [showConfirmRSVP, setShowConfirmRSVP] = useState<string | null>(null);
   
   const [currentMonth, setCurrentMonth] = useState(new Date(2024, 3, 1));
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
@@ -84,6 +85,20 @@ const Events: React.FC = () => {
     }
   }, []);
 
+  const confirmRSVP = (eventId: string) => {
+    const event = events.find(e => e.id === eventId);
+    if (!event) return;
+
+    if (event.isRSVPed) {
+      // If already RSVPed, we can skip confirmation for cancellation or add it too.
+      // The user request says "before a user RSVPs", usually meaning the initial action.
+      // But let's add it for both to be safe and consistent.
+      setShowConfirmRSVP(eventId);
+    } else {
+      setShowConfirmRSVP(eventId);
+    }
+  };
+
   const handleRSVP = (eventId: string) => {
     if (!currentUser) {
       navigate('/login');
@@ -91,6 +106,7 @@ const Events: React.FC = () => {
     }
 
     setRsvpLoading(eventId);
+    setShowConfirmRSVP(null);
 
     setTimeout(() => {
       const updatedEvents = events.map(event => {
@@ -289,7 +305,7 @@ const Events: React.FC = () => {
 
                         <div className="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-gray-100 gap-6">
                           <button
-                            onClick={() => handleRSVP(event.id)}
+                            onClick={() => confirmRSVP(event.id)}
                             disabled={rsvpLoading === event.id || (isFull && !event.isRSVPed)}
                             className={`w-full sm:w-auto px-12 py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center shadow-xl transition-all active:scale-95 ${
                               event.isRSVPed 
@@ -336,6 +352,39 @@ const Events: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {showConfirmRSVP && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/40 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white rounded-[2.5rem] p-10 max-w-md w-full shadow-2xl border border-white/20 animate-in zoom-in-95 duration-300">
+            <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary mb-6 mx-auto">
+              <AlertTriangle size={32} />
+            </div>
+            <h3 className="text-2xl font-black text-gray-900 text-center font-serif mb-4 leading-tight">
+              {events.find(e => e.id === showConfirmRSVP)?.isRSVPed ? 'Cancel Attendance?' : 'Confirm Attendance?'}
+            </h3>
+            <p className="text-gray-500 text-center text-sm mb-8 leading-relaxed">
+              {events.find(e => e.id === showConfirmRSVP)?.isRSVPed 
+                ? 'Are you sure you want to cancel your RSVP for this event? This will free up your slot for another member.' 
+                : 'By confirming, you agree to attend this event. We use this data for logistical planning and refreshment preparation.'}
+            </p>
+            <div className="flex flex-col gap-4">
+              <button 
+                onClick={() => handleRSVP(showConfirmRSVP)}
+                className="w-full py-4 rounded-2xl bg-primary text-white font-black text-xs uppercase tracking-[0.15em] hover:bg-blue-800 transition-colors shadow-lg shadow-primary/20"
+              >
+                Yes, {events.find(e => e.id === showConfirmRSVP)?.isRSVPed ? 'Cancel RSVP' : 'Confirm RSVP'}
+              </button>
+              <button 
+                onClick={() => setShowConfirmRSVP(null)}
+                className="w-full py-4 rounded-2xl bg-gray-50 text-gray-500 font-black text-xs uppercase tracking-[0.15em] hover:bg-gray-100 transition-colors border border-gray-100"
+              >
+                No, Go Back
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

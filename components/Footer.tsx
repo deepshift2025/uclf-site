@@ -3,7 +3,7 @@ import React from 'react';
 import { Gavel, Mail, Phone, MapPin, Facebook, Twitter, Linkedin, ShieldCheck } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const UCLF_LOGO = "https://i.postimg.cc/TYDvMJrD/UCLF-LOGO-(1).png";
+  const UCLF_LOGO = "https://i.postimg.cc/XJ0CFVSR/uclf-footer-logo.png";
 
   return (
     <footer className="bg-[#0f172a] text-gray-300 pt-16 pb-8">
@@ -11,8 +11,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="space-y-4">
             <div className="flex items-center space-x-4 text-white mb-2">
-              <img src={UCLF_LOGO} alt="UCLF Logo" className="h-16 w-16 object-contain" />
-              <span className="text-3xl font-black tracking-tight">UCLF</span>
+              <img src={UCLF_LOGO} alt="UCLF Logo" className="h-24 w-auto object-contain brightness-125 saturate-150" />
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
               Uganda Christian Lawyers Fraternity. Promoting justice and human dignity through fellowship, mentorship and legal aid since 1986.

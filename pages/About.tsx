@@ -31,18 +31,30 @@ const About: React.FC = () => {
   ];
 
   const staffMembers = [
-    { name: "Mr. Martin Sabiiti", role: "Chief Executive Officer", email: "m.sabiiti@uclf.org.ug", seed: "Martin" },
-    { name: "Jane Nakato", role: "Programs Manager", email: "j.nakato@uclf.org.ug", seed: "Jane" },
-    { name: "Robert Anguyo", role: "Regional Lead - West Nile", email: "r.anguyo@uclf.org.ug", seed: "Robert" },
-    { name: "David Komakech", role: "Regional Lead - North", email: "d.komakech@uclf.org.ug", seed: "David" },
-    { name: "Charles Mumbere", role: "Regional Lead - SW", email: "c.mumbere@uclf.org.ug", seed: "Charles" },
-    { name: "Sarah Candiru", role: "Finance Officer", email: "s.candiru@uclf.org.ug", seed: "Sarah" },
-    { name: "Grace Aber", role: "Senior Legal Officer", email: "g.aber@uclf.org.ug", seed: "Grace" },
-    { name: "Peter Okot", role: "M&E Officer", email: "p.okot@uclf.org.ug", seed: "Peter" },
-    { name: "Beatrice Namyalo", role: "IT Administrator", email: "b.namyalo@uclf.org.ug", seed: "Beatrice" },
-    { name: "John Baptist", role: "Paralegal Coord.", email: "j.baptist@uclf.org.ug", seed: "John" },
-    { name: "Faith Namara", role: "Comms Officer", email: "f.namara@uclf.org.ug", seed: "Faith" },
-    { name: "Martha Birungi", role: "Executive Asst.", email: "m.birungi@uclf.org.ug", seed: "Martha" },
+    { name: "Mr. Martin Sabiiti", role: "Chief Executive Officer", email: "m.sabiiti@uclf.org.ug", imageUrl: "https://i.postimg.cc/D0113RDR/Mr-Martin-Sabit-ceo.png" },
+    { name: "Ms. Viola Nabawanda", role: "Executive Assistant", email: "v.nabawanda@uclf.org.ug", imageUrl: "https://i.postimg.cc/nh3Bx4RF/Ms-Viola-Nabawanda-Executive-Assistant-(1).png" },
+    { name: "Mr. Anania Twinomujuni", role: "Project Officer", email: "a.twinomujuni@uclf.org.ug", imageUrl: "https://i.postimg.cc/BvyFLqfV/Mr-Anania-Twinomujuni-Project-Officer.png" },
+    { name: "Ms. Jolly Atimango", role: "Project Officer", email: "j.atimango@uclf.org.ug", imageUrl: "https://i.postimg.cc/Y2F6Fm0K/Ms-Jolly-Atimango-Project-Officer.png" },
+    { name: "Ms. Lilian Atuhaire", role: "Project Officer", email: "l.atuhaire@uclf.org.ug", imageUrl: "https://i.postimg.cc/qvJyWbG2/Ms-Lilian-Atuhaire-Project-Officer.png" },
+    { name: "Ms. Lynn Atugonza", role: "Project Officer", email: "l.atugonza@uclf.org.ug", imageUrl: "https://i.postimg.cc/rwfxT1nq/Ms-Lynn-Atugonza-Project-Officer.png" },
+    { name: "Mr. Dancun Kijjambu", role: "Project Officer", email: "d.kijjambu@uclf.org.ug", imageUrl: "https://i.postimg.cc/fLGYFMH8/Mr-Dancun-Kijjambu-Project-officer.png" },
+    { name: "Mr. Andrew Joel Wangwa", role: "Project Assistant", email: "a.wangwa@uclf.org.ug", imageUrl: "https://i.postimg.cc/cJj3gsGz/Mr-Andrew-Joel-Wangwa-Project-Assistant.png" },
+    { name: "Mr. Apollo Mbusa", role: "Project Assistant", email: "a.mbusa@uclf.org.ug", imageUrl: "https://i.postimg.cc/Ls7PYHF7/Mr-Apollo-Mbusa-Project-Assistant.png" },
+    { name: "Mr. Enock Mpuuga", role: "Project Assistant", email: "e.mpuuga@uclf.org.ug", imageUrl: "https://i.postimg.cc/ydM057fT/Mr-Enock-Mpuuga-Project-Assistant.png" },
+    { name: "Mr. Francis Nyakoojo", role: "Project Assistant", email: "f.nyakoojo@uclf.org.ug", imageUrl: "https://i.postimg.cc/MTC14zsX/Mr-Francis-Nyakoojo-Project-Assistant.png" },
+    { name: "Ms. Sandra Nalukenge Bagala", role: "Front Desk Officer", email: "s.bagala@uclf.org.ug", imageUrl: "https://i.postimg.cc/dV5rF2Hc/Ms-Sandra-Nalukenge-Bagala-Front-Desk-Officer.png" },
+    { name: "Mr. Collins Kafeero", role: "Paralegal Consultant", email: "c.kafeero@uclf.org.ug", imageUrl: "https://i.postimg.cc/qRP2Ypmx/Mr-Collins-Kafeero-Paralegal-Consultant.png" },
+    { name: "Mr. Godfrey Masaba", role: "Paralegal Consultant", email: "g.masaba@uclf.org.ug", imageUrl: "https://i.postimg.cc/hvVVRNwC/Mr-Godfrey-Masaba-Paralegal-Consultant.png" },
+    { name: "Ms. Rembo Florence", role: "Consultant", email: "r.florence@uclf.org.ug", imageUrl: "https://i.postimg.cc/Mp6VgPDx/Ms-Rembo-Florence-Consultant.png" },
+    { name: "Ms. Catherine Nyangoma", role: "Volunteer", email: "c.nyangoma@uclf.org.ug", imageUrl: "https://i.postimg.cc/qq22HWS7/Ms-Catherine-Nyangoma-Volunteer.png" },
+    { name: "Rev. Samson Malisa", role: "Volunteer", email: "s.malisa@uclf.org.ug", imageUrl: "https://i.postimg.cc/wBPNy6YS/Rev-Samson-Malisa-Voluteer.png" },
+    { name: "Ms. Irene Achen", role: "Office Attendant", email: "i.achen@uclf.org.ug", imageUrl: "https://i.postimg.cc/HWMwM7xN/Ms-Irene-Achen-Office-Attendant.png" },
+    { name: "Mr. Jerry Omitta", role: "Secretariat Staff", email: "j.omitta@uclf.org.ug", imageUrl: "https://i.postimg.cc/1XDD1bTT/Mr-Jerry-Omitta.png" },
+    { name: "Mr. Pius Ssempa", role: "Secretariat Staff", email: "p.ssempa@uclf.org.ug", imageUrl: "https://i.postimg.cc/mk77WKJx/Mr-Pius-Ssempa.png" },
+    { name: "Mr. Ronald Asiimwe", role: "Secretariat Staff", email: "r.asiimwe@uclf.org.ug", imageUrl: "https://i.postimg.cc/SRccbH34/Mr-Ronald-Asiimwe.png" },
+    { name: "Ms. Dorothy Kayanja", role: "Secretariat Staff", email: "d.kayanja@uclf.org.ug", imageUrl: "https://i.postimg.cc/WpZGZJ3g/Ms-Dorothy-Kayanja.png" },
+    { name: "Ms. Naleeba Racheal", role: "Secretariat Staff", email: "n.racheal@uclf.org.ug", imageUrl: "https://i.postimg.cc/HkYXFZtQ/Ms-Naleeba-Racheal.png" },
+    { name: "Ms. Sharon Amono", role: "Secretariat Staff", email: "s.amono@uclf.org.ug", imageUrl: "https://i.postimg.cc/t4BWb3Sy/Ms-Sharon-Amono.png" },
   ];
 
   return (
@@ -150,9 +162,10 @@ const About: React.FC = () => {
             <div className="lg:w-2/5 relative">
               <div className="h-full min-h-[400px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" 
+                  src="https://i.postimg.cc/D0113RDR/Mr-Martin-Sabit-ceo.png" 
                   alt="Mr. Martin Sabiiti" 
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary to-transparent p-12 text-white">
@@ -254,10 +267,15 @@ const About: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {staffMembers.map((member, i) => (
+          {staffMembers.map((member: any, i) => (
             <div key={i} className="bg-white p-6 rounded-[2rem] border border-gray-100 flex flex-col items-center text-center group hover:bg-gray-50 hover:shadow-2xl transition-all duration-500">
               <div className="w-24 h-24 rounded-2xl overflow-hidden mb-4 shadow-sm border-2 border-white group-hover:scale-110 transition-transform">
-                 <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${member.seed}`} alt={member.name} className="w-full h-full object-cover" />
+                 <img 
+                   src={member.imageUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${member.seed}`} 
+                   alt={member.name} 
+                   className="w-full h-full object-cover" 
+                   referrerPolicy="no-referrer"
+                 />
               </div>
               <h4 className="font-bold text-gray-900 text-base leading-tight mb-1">{member.name}</h4>
               <div className="inline-flex items-center px-3 py-1 bg-blue-50 text-primary rounded-full text-[9px] font-black uppercase tracking-widest mb-4">
