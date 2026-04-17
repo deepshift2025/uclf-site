@@ -7,67 +7,83 @@ import { GalleryImage } from '../types';
 const DEFAULT_GALLERY_DATA: GalleryImage[] = [
   {
     id: 'g1',
-    url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80',
-    caption: 'Annual General Meeting 2024 - Strategy Session at the Secretariat.',
+    url: 'https://i.postimg.cc/rySHPtx9/UCLF-Board.jpg',
+    caption: 'UCLF Board Members - Strategic leadership session for the fraternity.',
     category: 'Governance',
     date: 'March 20, 2024',
     location: 'Kampala'
   },
   {
     id: 'g2',
-    url: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80',
-    caption: 'West Nile Expansion: Meeting with local community leaders in Arua.',
-    category: 'Outreach',
-    date: 'March 15, 2024',
-    location: 'Arua'
+    url: 'https://i.postimg.cc/0jdHML98/The-7th-National-Youth-Convention-NALI-Kyankwanzi-29-1536x942.jpg',
+    caption: 'The 7th National Youth Convention at NALI, Kyankwanzi - Group Session.',
+    category: 'Youth & Mentorship',
+    date: 'February 15, 2024',
+    location: 'Kyankwanzi'
   },
   {
     id: 'g3',
-    url: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80',
-    caption: 'High Court session - Pro-bono defense for indigent clients.',
-    category: 'Legal Aid',
-    date: 'February 28, 2024',
-    location: 'Gulu'
+    url: 'https://i.postimg.cc/RhQb6jv4/The-7th-National-Youth-Convention-NALI-Kyankwanzi-82.jpg',
+    caption: '7th National Youth Convention - Inspiring the next generation of lawyers.',
+    category: 'Youth & Mentorship',
+    date: 'February 16, 2024',
+    location: 'Kyankwanzi'
   },
   {
     id: 'g4',
-    url: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80',
-    caption: 'Plea Bargain initiative at Kayunga Prison - Rights sensitization.',
-    category: 'Prison Ministry',
-    date: 'January 12, 2024',
-    location: 'Kayunga'
+    url: 'https://i.postimg.cc/pVDS6nzG/research.jpg',
+    caption: 'Ground-breaking research and documentation on access to justice.',
+    category: 'Outreach',
+    date: 'January 20, 2024',
+    location: 'Regional'
   },
   {
     id: 'g5',
-    url: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80',
-    caption: 'Student Symposium - Mentoring future lawyers at UCU Mukono.',
-    category: 'Mentorship',
-    date: 'December 05, 2023',
-    location: 'Mukono'
+    url: 'https://i.postimg.cc/VsjhVbnV/UCLF-Board-meet.jpg',
+    caption: 'Board of Directors meeting - Planning for 2024 operations.',
+    category: 'Governance',
+    date: 'February 05, 2024',
+    location: 'Secretariat'
   },
   {
     id: 'g6',
-    url: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80',
-    caption: 'Fellowship Dinner - Strengthening the bonds of faith among members.',
-    category: 'Fellowship',
-    date: 'November 20, 2023',
-    location: 'Kampala'
+    url: 'https://i.postimg.cc/Hn4PcfTY/UCLF-Mission.jpg',
+    caption: 'UCLF Mission Outreach - Serving the community with Christ-centered legal care.',
+    category: 'Outreach',
+    date: 'December 20, 2023',
+    location: 'Community'
   },
   {
     id: 'g7',
-    url: 'https://images.unsplash.com/photo-1577412647305-991150c7d163?auto=format&fit=crop&q=80',
-    caption: 'Northern Region Board Meeting - Reviewing 2023 performance.',
-    category: 'Governance',
-    date: 'October 15, 2023',
-    location: 'Gulu'
+    url: 'https://i.postimg.cc/SQWPvzCZ/Uganda-Christian-Lawyers-Fraternity-UCLF.jpg',
+    caption: 'The Uganda Christian Lawyers Fraternity - A shared commitment to justice.',
+    category: 'Fellowship',
+    date: 'March 15, 2024',
+    location: 'National'
   },
   {
     id: 'g8',
-    url: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80',
-    caption: 'Land Mediation session in a village outreach program.',
-    category: 'Legal Aid',
-    date: 'September 10, 2023',
-    location: 'Masaka'
+    url: 'https://i.postimg.cc/ZYrQMypg/Whats-App-Image-2025-10-29-at-08-05-56-0e2bdb33-700x525.jpg',
+    caption: 'UCLF Field Activity - Direct engagement with the vulnerable in rural areas.',
+    category: 'Outreach',
+    date: 'October 29, 2023',
+    location: 'Field'
+  },
+  {
+    id: 'g9',
+    url: 'https://i.postimg.cc/fWxPr0m6/Youth-6.jpg',
+    caption: 'Youth Empowerment - Mentoring law students in their faith and profession.',
+    category: 'Mentorship',
+    date: 'November 10, 2023',
+    location: 'University'
+  },
+  {
+    id: 'g10',
+    url: 'https://i.postimg.cc/zDnQcRK6/Youth-7-700x200.jpg',
+    caption: 'UCLF Youth Seminar - Discussing the intersection of law and biblical principles.',
+    category: 'Mentorship',
+    date: 'December 05, 2023',
+    location: 'Kampala'
   }
 ];
 
@@ -172,6 +188,7 @@ const Gallery: React.FC = () => {
                   src={img.url} 
                   alt={img.caption} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
@@ -237,12 +254,13 @@ const Gallery: React.FC = () => {
              <div className="w-full bg-white/5 rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
                 <div className="grid grid-cols-1 lg:grid-cols-12">
                    {/* Image View */}
-                   <div className="lg:col-span-8 bg-black flex items-center justify-center min-h-[400px] relative overflow-hidden">
+                    <div className="lg:col-span-8 bg-black flex items-center justify-center min-h-[400px] relative overflow-hidden">
                       <img 
                         key={selectedImage.id}
                         src={selectedImage.url} 
                         alt={selectedImage.caption} 
                         className="max-w-full max-h-[80vh] object-contain animate-in zoom-in duration-500" 
+                        referrerPolicy="no-referrer"
                       />
                    </div>
                    

@@ -6,6 +6,18 @@ import {
   MessageSquare, Newspaper, Clock, ChevronRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+
+const HERO_IMAGES = [
+  "https://i.postimg.cc/CMj2Qfkm/board.jpg",
+  "https://i.postimg.cc/66dPmGnF/counsel-arthur-2048x1775.jpg",
+  "https://i.postimg.cc/0jdHML98/The-7th-National-Youth-Convention-NALI-Kyankwanzi-29-1536x942.jpg",
+  "https://i.postimg.cc/RhQb6jv4/The-7th-National-Youth-Convention-NALI-Kyankwanzi-82.jpg",
+  "https://i.postimg.cc/rySHPtx9/UCLF-Board.jpg",
+  "https://i.postimg.cc/VsjhVbnV/UCLF-Board-meet.jpg",
+  "https://i.postimg.cc/Hn4PcfTY/UCLF-Mission.jpg",
+  "https://i.postimg.cc/SQWPvzCZ/Uganda-Christian-Lawyers-Fraternity-UCLF.jpg"
+];
 
 const DEFAULT_PARTNERS = [
   { name: 'Uganda Law Council', type: 'Regulatory Body', logoUrl: 'https://placehold.co/200x80/1e3a8a/white?text=LAW+COUNCIL' },
@@ -19,17 +31,31 @@ const DEFAULT_PARTNERS = [
 ];
 
 const DEFAULT_GALLERY = [
-  'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80',
+  "https://i.postimg.cc/pVDS6nzG/research.jpg",
+  "https://i.postimg.cc/0jdHML98/The-7th-National-Youth-Convention-NALI-Kyankwanzi-29-1536x942.jpg",
+  "https://i.postimg.cc/RhQb6jv4/The-7th-National-Youth-Convention-NALI-Kyankwanzi-82.jpg",
+  "https://i.postimg.cc/rySHPtx9/UCLF-Board.jpg",
+  "https://i.postimg.cc/VsjhVbnV/UCLF-Board-meet.jpg",
+  "https://i.postimg.cc/Hn4PcfTY/UCLF-Mission.jpg",
+  "https://i.postimg.cc/SQWPvzCZ/Uganda-Christian-Lawyers-Fraternity-UCLF.jpg",
+  "https://i.postimg.cc/ZYrQMypg/Whats-App-Image-2025-10-29-at-08-05-56-0e2bdb33-700x525.jpg",
+  "https://i.postimg.cc/fWxPr0m6/Youth-6.jpg",
+  "https://i.postimg.cc/PJzFpBdn/Youth-6-150x150.jpg",
+  "https://i.postimg.cc/59wrRFLr/Youth-7-150x150.jpg",
+  "https://i.postimg.cc/zDnQcRK6/Youth-7-700x200.jpg"
 ];
 
 const Home: React.FC = () => {
   const [partners, setPartners] = useState(DEFAULT_PARTNERS);
   const [galleryImages, setGalleryImages] = useState(DEFAULT_GALLERY);
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const savedPartners = localStorage.getItem('uclf_partners');
@@ -144,14 +170,27 @@ const Home: React.FC = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative bg-primary py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img 
-            src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80" 
-            alt="background" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-primary/80"></div>
+      <section className="relative bg-primary py-24 lg:py-32 overflow-hidden min-h-[600px] flex items-center">
+        <div className="absolute inset-0 z-0">
+          <AnimatePresence>
+            <motion.div
+              key={currentHeroIndex}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.02 }}
+              transition={{ duration: 2.5, ease: "easeOut" }}
+              className="absolute inset-0"
+            >
+              <img 
+                src={HERO_IMAGES[currentHeroIndex]} 
+                alt={`Hero ${currentHeroIndex}`} 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-primary/60 backdrop-blur-[1px]"></div>
+            </motion.div>
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/30 to-transparent z-10"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="lg:w-2/3">
@@ -315,7 +354,12 @@ const Home: React.FC = () => {
                 key={idx} 
                 className="mx-4 w-[300px] h-[200px] md:w-[400px] md:h-[250px] rounded-3xl overflow-hidden shadow-2xl relative group"
               >
-                <img src={img} alt="UCLF Gallery" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <img 
+                  src={img} 
+                  alt="UCLF Gallery" 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                  referrerPolicy="no-referrer"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                   <span className="text-white text-xs font-bold uppercase tracking-widest border-l-2 border-secondary pl-3">Field Activity {idx % galleryImages.length + 1}</span>
                 </div>
